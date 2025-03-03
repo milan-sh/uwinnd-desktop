@@ -1,58 +1,96 @@
 import React, { useState } from "react";
-import { Button, MobileMenu, Card, Nav } from "../components/index";
+import { Button, Sidebar, Card, Nav } from "../components/index";
 import favorite from "../assets/favorite.svg";
 import favorite_red from "../assets/favorite_red.svg";
+import arrow_forward from "../assets/arrow_forward.svg";
 
 const work = () => {
-  const [acitveTab, setActiveTab] = useState("Tab2");
+  const [acitveTab, setActiveTab] = useState("Tab1");
 
   return (
-    <div className="font-sans">
-      <Nav/>
-      <div className="p-4 text-2xl font-medium">
-        <h2>Bookings</h2>
-      </div>
-      <div className="w-full">
-        <div className="tabs flex justify-between items-center py-2 px-4">
-          <button
-            onClick={() => setActiveTab("Tab1")}
-            className={`text-xl w-2/4 ${
-              acitveTab === "Tab1"
-                ? "text-primary border-b-4 border-primary"
-                : "text-gray-500"
-            }`}
-          >
-            Active
+    <div className="font-sans bg-background">
+      <Nav />
+      <div className="flex lg:flex-row flex-col justify-between items-start w-full gap-x-5 p-4">
+        <Sidebar />
+        <div className="lg:w-3/4 lg:m-4 rounded-lg bg-white p-4">
+          <button className="p-4 cursor-pointer flex items-center gap-x-3.5">
+            <img className="w-4" src={arrow_forward} alt="" />{" "}
+            <span className="font-semibold text-xl">Back</span>
           </button>
-          <button
-            onClick={() => setActiveTab("Tab2")}
-            className={`text-xl w-2/4 ${
-              acitveTab === "Tab2"
-                ? "text-primary border-b-4 border-primary"
-                : "text-gray-500"
-            }`}
-          >
-            Past
-          </button>
+          <div className="p-4 lg:text-3xl text-lg font-medium flex lg:flex-row flex-col justify-between items-center gap-y-3">
+            <h2 className="lg:self-start self-start">My Bookings</h2>
+            <label className="self-start lg:self-auto flex items-center justify-start gap-x-2 bg-white border-2 border-gray-100 lg:py-3 py-1 px-3 lg:px-6 rounded-lg">
+              <svg
+                className="h-[0.8em] opacity-50"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </g>
+              </svg>
+              <input
+                type="search"
+                className="grow text-lg outline-none"
+                placeholder="Search"
+              />
+            </label>
+          </div>
+          <div className="w-full p-4">
+            <div className="tabs flex justify-start items-center py-2 px-4">
+              <button
+                onClick={() => setActiveTab("Tab1")}
+                className={`text-xl lg:w-36 w-28 ${
+                  acitveTab === "Tab1"
+                    ? "text-custom-gradient border-b-4 border-primary "
+                    : "text-gray-500"
+                }`}
+              >
+                Active
+              </button>
+              <button
+                onClick={() => setActiveTab("Tab2")}
+                className={`text-xl lg:w-36 w-28 ${
+                  acitveTab === "Tab2"
+                    ? "text-custom-gradient border-b-4 border-primary "
+                    : "text-gray-500"
+                }`}
+              >
+                Past
+              </button>
+            </div>
+          </div>
+          
+          {/* Appointments */}
+          <div className="px-4 py-2">
+            <h2 className="text-gray-500 text-lg font-medium pb-4">Today</h2>
+            {/* cards-container */}
+            <div className="flex flex-col justify-start items-start gap-y-4">
+              <Card
+                heart={favorite}
+                textColor="text-green-500"
+                className="bg-green-500"
+                status="Booking Confirmed"
+                otp="true"
+              />
+              <Card
+                heart={favorite_red}
+                textColor="text-orange-400"
+                className="bg-orange-400"
+                status="Pending"
+                pending="true"
+              />
+            </div>
+          </div>
         </div>
       </div>
-      <div className="flex justify-start items-center gap-x-2 p-4 bg-background">
-        <Button>All</Button>
-        <Button>My self</Button>
-        <Button>Dependent</Button>
-      </div>
-      {/* Appointments */}
-      <div className="px-4 py-2 bg-background">
-        <h2 className="text-gray-500 text-lg font-medium pb-4">Today</h2>
-        {/* cards-container */}
-        <div className="flex flex-col justify-start items-start gap-y-4">
-          <Card heart={favorite} textColor="text-gray-400" className="bg-gray-400"  status="Completed" />
-          <Card heart={favorite_red} textColor="text-gray-400" className="bg-gray-400" status="Completed" />
-          <Card heart={favorite} textColor="text-red-700" className="bg-red-700" status="Cancelled"/>
-        </div>
-      </div>
-      {/* Mobile Menu */}
-      <MobileMenu />
     </div>
   );
 };

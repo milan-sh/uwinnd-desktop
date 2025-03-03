@@ -18,3 +18,4 @@
 .text-custom-gradient {
     @apply bg-gradient-to-r from-[#7948BB] to-[#9C48BB] bg-clip-text text-transparent;
 }
+
