@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+:root {
+    all: unset;
+
+}
+
+@theme {
+    --primary-color: #9C48BB;
+    --color-background: #F2EFFA;
+
+}
+
+.bg-custom-gradient {
+    @apply bg-gradient-to-r from-[#7948BB] to-[#9C48BB]  w-fit;
+}
+.text-custom-gradient {
+    @apply bg-gradient-to-r from-[#7948BB] to-[#9C48BB] bg-clip-text text-transparent;
+}
